@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap, Sparkles, ChevronDown, Rocket, Shield, Globe } from "lucide-react";
+import { Menu, X, Zap, Sparkles, Rocket, Shield, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigation = [

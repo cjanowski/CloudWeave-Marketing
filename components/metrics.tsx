@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { Cloud, Users, Zap, TrendingUp, Sparkles, Star } from "lucide-react";
 
@@ -76,8 +76,6 @@ function Counter({ value, decimals = 0, suffix = "" }: { value: number; decimals
 }
 
 function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -91,8 +89,6 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
       }}
       viewport={{ once: true }}
       className="group relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Glow effect */}
       <div className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
@@ -282,8 +278,8 @@ export default function Metrics() {
               ))}
             </div>
             <blockquote className="text-lg text-white/80 italic">
-              "CloudWeave has transformed how we think about infrastructure.
-              The simplicity and power it provides is unmatched."
+              &ldquo;CloudWeave has transformed how we think about infrastructure.
+              The simplicity and power it provides is unmatched.&rdquo;
             </blockquote>
             <div className="mt-4 text-white/60">
               <div className="font-semibold">Sarah Chen</div>

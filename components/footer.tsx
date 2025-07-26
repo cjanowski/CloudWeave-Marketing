@@ -140,7 +140,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className="space-y-3"
             >
-              {contactInfo.map((item, index) => (
+              {contactInfo.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
@@ -160,7 +160,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className="flex space-x-4"
             >
-              {social.map((item, index) => (
+              {social.map((item) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
@@ -189,7 +189,7 @@ export default function Footer() {
               >
                 <h3 className="text-sm font-semibold leading-6 text-white mb-6">Product</h3>
                 <ul role="list" className="space-y-4">
-                  {navigation.product.map((item, index) => (
+                  {navigation.product.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
@@ -212,7 +212,7 @@ export default function Footer() {
               >
                 <h3 className="text-sm font-semibold leading-6 text-white mb-6">Company</h3>
                 <ul role="list" className="space-y-4">
-                  {navigation.company.map((item, index) => (
+                  {navigation.company.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
@@ -236,7 +236,7 @@ export default function Footer() {
               >
                 <h3 className="text-sm font-semibold leading-6 text-white mb-6">Resources</h3>
                 <ul role="list" className="space-y-4">
-                  {navigation.resources.map((item, index) => (
+                  {navigation.resources.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
@@ -259,7 +259,7 @@ export default function Footer() {
               >
                 <h3 className="text-sm font-semibold leading-6 text-white mb-6">Legal</h3>
                 <ul role="list" className="space-y-4">
-                  {navigation.legal.map((item, index) => (
+                  {navigation.legal.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}

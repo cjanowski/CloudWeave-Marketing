@@ -73,8 +73,6 @@ const tiers = [
 ];
 
 function PricingCard({ tier, index, isYearly }: { tier: typeof tiers[0]; index: number; isYearly: boolean }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -91,8 +89,6 @@ function PricingCard({ tier, index, isYearly }: { tier: typeof tiers[0]; index: 
         "group relative h-full",
         tier.featured && "scale-105"
       )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Popular badge */}
       {tier.featured && (

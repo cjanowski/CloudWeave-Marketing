@@ -173,8 +173,8 @@ export default function CTA() {
                 ))}
               </div>
               <blockquote className="text-lg text-white/80 italic mb-4">
-                "CloudWeave reduced our deployment time from hours to minutes.
-                It's simply the best cloud platform we've ever used."
+                &ldquo;CloudWeave reduced our deployment time from hours to minutes.
+                It&apos;s simply the best cloud platform we&apos;ve ever used.&rdquo;
               </blockquote>
               <div className="flex items-center justify-center space-x-4">
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400" />

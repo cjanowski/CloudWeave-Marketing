@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Play, Zap, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Star } from "lucide-react";
 
 export default function Hero() {
   return (
