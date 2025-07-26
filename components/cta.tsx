@@ -2,73 +2,220 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Star, Rocket } from "lucide-react";
+
+const floatingElements = [
+  { icon: Zap, delay: 0, x: "15%", y: "20%" },
+  { icon: Star, delay: 1, x: "85%", y: "25%" },
+  { icon: Rocket, delay: 2, x: "10%", y: "75%" },
+  { icon: Sparkles, delay: 1.5, x: "90%", y: "80%" },
+];
 
 export default function CTA() {
   return (
-    <section className="relative isolate overflow-hidden bg-gray-900">
-      <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
-          >
-            Ready to transform your
-            <br />
-            cloud infrastructure?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300"
-          >
-            Join thousands of developers who are already using CloudWeave to simplify their cloud deployments.
-          </motion.p>
+    <section className="relative py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-neutral-900 to-black" />
+      
+      {/* Animated mesh gradient */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0 mesh-gradient opacity-40"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+      </div>
+
+      {/* Floating elements */}
+      <div className="absolute inset-0">
+        {floatingElements.map((element, index) => {
+          const Icon = element.icon;
+          return (
+            <motion.div
+              key={index}
+              className="absolute"
+              style={{ left: element.x, top: element.y }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{
+                opacity: [0.2, 0.5, 0.2],
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                delay: element.delay,
+                ease: "easeInOut"
+              }}
+            >
+              <div className="glass rounded-2xl p-4">
+                <Icon className="h-6 w-6 text-white/60" />
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mt-10 flex items-center justify-center gap-x-6"
+            className="inline-flex items-center space-x-2 glass rounded-full px-4 py-2 text-sm font-medium text-white/80 mb-8"
+          >
+            <Rocket className="h-4 w-4 text-accent-400" />
+            <span>Ready to launch?</span>
+          </motion.div>
+
+          {/* Main heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
+          >
+            <span className="block">Transform Your</span>
+            <span className="block gradient-text">Cloud Infrastructure</span>
+            <span className="block">Today</span>
+          </motion.h2>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-8 max-w-2xl text-xl leading-8 text-white/70"
+          >
+            Join thousands of developers who are already using CloudWeave to simplify
+            their cloud deployments and scale their applications effortlessly.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <Link
               href="https://app.cloudweave.io/signup"
-              className="group relative inline-flex items-center rounded-md bg-white px-4 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all hover:scale-105"
+              className="group relative overflow-hidden btn-primary text-lg px-8 py-4"
             >
-              <span className="absolute -inset-0.5 -z-10 rounded-md bg-gradient-to-r from-blue-600 to-purple-600 opacity-75 blur transition-opacity group-hover:opacity-100" />
-              <Sparkles className="mr-2 h-4 w-4" />
-              Start free trial
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <div className="relative flex items-center space-x-3">
+                <Sparkles className="h-5 w-5" />
+                <span>Start Free Trial</span>
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </div>
             </Link>
+            
             <Link
               href="/contact"
-              className="text-sm font-semibold leading-6 text-white hover:text-gray-300 transition-colors"
+              className="group flex items-center space-x-2 text-lg font-semibold text-white/80 hover:text-white transition-colors"
             >
-              Contact sales <span aria-hidden="true">→</span>
+              <span>Contact Sales</span>
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
+          </motion.div>
+
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-16"
+          >
+            <div className="glass rounded-2xl p-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold gradient-text mb-2">10,000+</div>
+                  <div className="text-white/60 text-sm">Active Developers</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold gradient-text mb-2">99.99%</div>
+                  <div className="text-white/60 text-sm">Uptime SLA</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold gradient-text mb-2">24/7</div>
+                  <div className="text-white/60 text-sm">Expert Support</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Bottom testimonial */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-16"
+          >
+            <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
+              <div className="flex justify-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 text-accent-400 fill-current" />
+                ))}
+              </div>
+              <blockquote className="text-lg text-white/80 italic mb-4">
+                "CloudWeave reduced our deployment time from hours to minutes.
+                It's simply the best cloud platform we've ever used."
+              </blockquote>
+              <div className="flex items-center justify-center space-x-4">
+                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400" />
+                <div className="text-left">
+                  <div className="font-semibold text-white">Alex Rodriguez</div>
+                  <div className="text-sm text-white/60">Lead DevOps Engineer, TechFlow</div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-      
-      {/* Background decoration */}
-      <svg
-        viewBox="0 0 1024 1024"
-        className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
-        aria-hidden="true"
-      >
-        <circle cx={512} cy={512} r={512} fill="url(#gradient)" fillOpacity="0.7" />
-        <defs>
-          <radialGradient id="gradient">
-            <stop stopColor="#7775D6" />
-            <stop offset={1} stopColor="#3B82F6" />
-          </radialGradient>
-        </defs>
-      </svg>
+
+      {/* Animated background orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.5, 0.3, 0.5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4,
+          }}
+        />
+      </div>
     </section>
   );
 }

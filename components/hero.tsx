@@ -2,15 +2,15 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, Zap, Sparkles, Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950">
-      {/* Enhanced background with animated gradient */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Animated mesh gradient background */}
+      <div className="absolute inset-0 -z-20">
         <motion.div
+          className="absolute inset-0 mesh-gradient opacity-60"
           animate={{
             backgroundPosition: ["0% 0%", "100% 100%"],
           }}
@@ -19,117 +19,197 @@ export default function Hero() {
             repeat: Infinity,
             repeatType: "reverse",
           }}
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)",
-            backgroundSize: "100% 100%",
-          }}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
       </div>
-      
-      <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="inline-flex items-center space-x-2 rounded-full bg-blue-50 px-3 py-1 text-sm leading-6 text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-950 dark:text-blue-300 dark:ring-blue-300/20">
-              <span className="font-semibold">New</span>
-              <span className="h-4 w-px bg-blue-700/20 dark:bg-blue-300/20"></span>
-              <span>Just shipped v2.0</span>
-            </div>
-          </motion.div>
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-white"
-          >
-            Cloud Infrastructure Made Simple
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
-          >
-            Deploy, monitor, and scale your applications with CloudWeave. 
-            Our platform simplifies cloud infrastructure management, letting you focus on building great products.
-          </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 flex items-center gap-x-6"
-          >
-            <Link
-              href="https://app.cloudweave.io/signup"
-              className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
+
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 -z-10 opacity-20">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-32 lg:px-8">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
+          {/* Content */}
+          <div className="relative z-10 mx-auto max-w-2xl lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Get started for free
-              <ArrowRight className="ml-2 -mr-1 inline h-4 w-4" />
-            </Link>
-            <button className="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors dark:text-white dark:hover:text-blue-400">
-              <Play className="mr-2 h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors dark:text-gray-500 dark:group-hover:text-blue-400" />
-              Watch demo
-            </button>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-10 flex items-center gap-x-6"
-          >
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 ring-2 ring-white dark:ring-gray-950"
-                />
-              ))}
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              <span className="font-semibold text-gray-900 dark:text-white">1,000+</span> developers trust CloudWeave
-            </p>
-          </motion.div>
-        </div>
-        
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32"
-        >
-          <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-            <div className="relative">
-              <div className="rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 dark:bg-white/5 dark:ring-white/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <div className="rounded-md bg-white shadow-2xl ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-white/10">
-                  <div className="p-8 sm:p-10">
-                    <div className="space-y-4">
-                      <div className="h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="h-4 w-1/2 rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="mt-8 grid grid-cols-3 gap-4">
-                        {[1, 2, 3, 4, 5, 6].map((i) => (
-                          <div key={i} className="space-y-2">
-                            <div className="h-20 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900"></div>
-                            <div className="h-2 w-1/2 rounded bg-gray-200 dark:bg-gray-700"></div>
-                          </div>
+              <div className="inline-flex items-center space-x-3 glass rounded-full px-4 py-2 text-sm font-medium text-white">
+                <div className="flex items-center space-x-2">
+                  <div className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                  <span className="font-semibold">New</span>
+                </div>
+                <div className="h-4 w-px bg-white/20" />
+                <span>CloudWeave v3.0 is here</span>
+                <Sparkles className="h-4 w-4 text-blue-400" />
+              </div>
+            </motion.div>
+
+            {/* Main heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
+            >
+              <span className="block">Cloud Infrastructure</span>
+              <span className="block gradient-text">Reimagined</span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-6 text-xl leading-8 text-white/80 max-w-2xl"
+            >
+              Deploy, scale, and monitor your applications with unprecedented ease.
+              Our next-generation platform transforms complex cloud operations into simple,
+              intuitive experiences.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-10 flex flex-col sm:flex-row gap-4"
+            >
+              <Link
+                href="https://app.cloudweave.io/signup"
+                className="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center space-x-2"
+              >
+                <span>Start Building</span>
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              
+              <button className="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center space-x-3">
+                <Play className="h-5 w-5" />
+                <span>Watch Demo</span>
+              </button>
+            </motion.div>
+
+            {/* Social proof */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-12 flex items-center space-x-8"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <motion.div
+                      key={i}
+                      className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 ring-2 ring-white/20"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
+                    />
+                  ))}
+                </div>
+                <div className="text-white/80">
+                  <div className="font-semibold text-white">10,000+</div>
+                  <div className="text-sm">developers worldwide</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-2 text-white/80">
+                <div className="flex space-x-1">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="h-4 w-4 fill-blue-400 text-blue-400" />
+                  ))}
+                </div>
+                <span className="text-sm font-medium">4.9/5 rating</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Visual */}
+          <div className="relative mt-16 sm:mt-24 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+              className="relative mx-auto w-full max-w-lg lg:max-w-none"
+            >
+              {/* Main dashboard mockup */}
+              <div className="relative">
+                {/* Glow effects */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl" />
+                
+                {/* Dashboard container */}
+                <div className="relative glass-strong rounded-2xl p-1">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden">
+                    {/* Header */}
+                    <div className="flex items-center justify-between p-6 border-b border-white/10">
+                      <div className="flex items-center space-x-3">
+                        <div className="flex space-x-2">
+                          <div className="h-3 w-3 rounded-full bg-red-400" />
+                          <div className="h-3 w-3 rounded-full bg-yellow-400" />
+                          <div className="h-3 w-3 rounded-full bg-green-400" />
+                        </div>
+                        <span className="text-white/60 text-sm font-medium">CloudWeave Dashboard</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                        <span className="text-green-400 text-xs font-medium">Live</span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 space-y-6">
+                      {/* Stats cards */}
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { label: "Active Deployments", value: "24", trend: "+12%" },
+                          { label: "Response Time", value: "45ms", trend: "-8%" },
+                        ].map((stat, index) => (
+                          <motion.div
+                            key={index}
+                            className="glass rounded-xl p-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
+                          >
+                            <div className="text-white/60 text-xs font-medium">{stat.label}</div>
+                            <div className="text-white text-2xl font-bold mt-1">{stat.value}</div>
+                            <div className="text-blue-400 text-xs font-medium mt-1">{stat.trend}</div>
+                          </motion.div>
                         ))}
                       </div>
+
+                      {/* Chart area */}
+                      <motion.div
+                        className="glass rounded-xl p-4 h-32"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 1.2 }}
+                      >
+                        <div className="flex items-end justify-between h-full space-x-2">
+                          {[40, 65, 45, 80, 55, 90, 70, 85].map((height, index) => (
+                            <motion.div
+                              key={index}
+                              className="bg-gradient-to-t from-blue-600 to-purple-400 rounded-sm flex-1"
+                              style={{ height: `${height}%` }}
+                              initial={{ height: 0 }}
+                              animate={{ height: `${height}%` }}
+                              transition={{ duration: 0.8, delay: 1.4 + index * 0.1 }}
+                            />
+                          ))}
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 opacity-20 blur-2xl"></div>
-              <div className="absolute -top-4 -left-4 h-24 w-24 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 opacity-20 blur-2xl"></div>
-            </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
