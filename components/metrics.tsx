@@ -1,81 +1,41 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { Cloud, Users, Zap, TrendingUp, Sparkles, Star } from "lucide-react";
 
-const stats = [
+const trustPoints = [
   {
     id: 1,
-    name: "Active Deployments",
-    value: 50000,
-    suffix: "+",
-    icon: Cloud,
-    description: "Applications deployed globally",
+    name: "Professional Engineers",
+    description: "Trusted by experienced software engineers",
+    icon: Users,
     gradient: "from-primary-400 to-primary-600",
-    glowColor: "primary-500",
   },
   {
     id: 2,
-    name: "Developer Teams",
-    value: 10000,
-    suffix: "+",
-    icon: Users,
-    description: "Teams building on CloudWeave",
+    name: "Platform Engineers", 
+    description: "Built for modern platform engineering teams",
+    icon: Cloud,
     gradient: "from-secondary-400 to-secondary-600",
-    glowColor: "secondary-500",
   },
   {
     id: 3,
-    name: "API Requests",
-    value: 2.5,
-    suffix: "B+",
-    decimals: 1,
-    icon: Zap,
-    description: "Processed monthly",
+    name: "Enterprise Ready",
+    description: "Designed for production workloads",
+    icon: TrendingUp,
     gradient: "from-accent-400 to-accent-600",
-    glowColor: "accent-500",
   },
   {
     id: 4,
-    name: "Uptime SLA",
-    value: 99.99,
-    suffix: "%",
-    decimals: 2,
-    icon: TrendingUp,
-    description: "Guaranteed availability",
+    name: "Modern Architecture",
+    description: "Built with latest cloud-native technologies",
+    icon: Zap,
     gradient: "from-orange-400 to-orange-600",
-    glowColor: "orange-500",
   },
 ];
 
-function Counter({ value, decimals = 0, suffix = "" }: { value: number; decimals?: number; suffix?: string }) {
-  const ref = useRef(null);
-  const motionValue = useMotionValue(0);
-  const isInView = useInView(ref, { once: true });
 
-  useEffect(() => {
-    if (isInView) {
-      animate(motionValue, value, {
-        duration: 2.5,
-        ease: "easeOut",
-      });
-    }
-  }, [isInView, value, motionValue]);
-
-  const rounded = useTransform(motionValue, (latest) => {
-    return latest.toFixed(decimals);
-  });
-
-  return (
-    <span ref={ref}>
-      <motion.span className="gradient-text">{rounded}</motion.span>
-      <span className="gradient-text">{suffix}</span>
-    </span>
-  );
-}
-
-function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
+function TrustCard({ trustPoint, index }: { trustPoint: typeof trustPoints[0]; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -91,7 +51,7 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
       className="group relative"
     >
       {/* Glow effect */}
-      <div className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
+      <div className={`absolute -inset-1 bg-gradient-to-r ${trustPoint.gradient} rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
       
       {/* Card */}
       <div className="relative glass-strong rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 h-full">
@@ -125,9 +85,9 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <div className={`absolute inset-0 bg-gradient-to-r ${stat.gradient} rounded-xl blur-md opacity-50`} />
-          <div className={`relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-r ${stat.gradient} shadow-lg`}>
-            <stat.icon className="h-8 w-8 text-white" />
+          <div className={`absolute inset-0 bg-gradient-to-r ${trustPoint.gradient} rounded-xl blur-md opacity-50`} />
+          <div className={`relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-r ${trustPoint.gradient} shadow-lg`}>
+            <trustPoint.icon className="h-8 w-8 text-white" />
           </div>
           
           {/* Sparkle effect */}
@@ -149,22 +109,18 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
         {/* Content */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-white/80 group-hover:text-white transition-colors">
-            {stat.name}
+            {trustPoint.name}
           </h3>
           
-          <div className="text-4xl font-bold leading-none">
-            <Counter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
-          </div>
-          
           <p className="text-white/60 text-sm leading-relaxed">
-            {stat.description}
+            {trustPoint.description}
           </p>
 
           {/* Progress bar */}
           <div className="relative">
             <div className="h-1 bg-white/10 rounded-full overflow-hidden">
               <motion.div
-                className={`h-full bg-gradient-to-r ${stat.gradient} rounded-full`}
+                className={`h-full bg-gradient-to-r ${trustPoint.gradient} rounded-full`}
                 initial={{ width: 0 }}
                 whileInView={{ width: "100%" }}
                 transition={{ duration: 1.5, delay: index * 0.2 + 0.5 }}
@@ -240,8 +196,8 @@ export default function Metrics() {
             viewport={{ once: true }}
             className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
           >
-            <span className="block">Powering the Future of</span>
-            <span className="block gradient-text">Cloud Infrastructure</span>
+            <span className="block">Trusted by</span>
+            <span className="block gradient-text">Professional Engineers</span>
           </motion.h2>
 
           <motion.p
@@ -251,19 +207,19 @@ export default function Metrics() {
             viewport={{ once: true }}
             className="mt-6 text-xl leading-8 text-white/70 max-w-2xl mx-auto"
           >
-            Join thousands of developers and companies who trust CloudWeave
-            to power their most critical infrastructure.
+            Built for experienced software engineers and platform engineering teams
+            who demand reliable, modern cloud infrastructure solutions.
           </motion.p>
         </div>
 
-        {/* Stats grid */}
+        {/* Trust points grid */}
         <div className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, index) => (
-            <StatCard key={stat.id} stat={stat} index={index} />
+          {trustPoints.map((trustPoint, index) => (
+            <TrustCard key={trustPoint.id} trustPoint={trustPoint} index={index} />
           ))}
         </div>
 
-        {/* Bottom testimonial */}
+        {/* Trust statement */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -272,19 +228,10 @@ export default function Metrics() {
           className="mt-20 text-center"
         >
           <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
-            <div className="flex justify-center mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 text-accent-400 fill-current" />
-              ))}
-            </div>
-            <blockquote className="text-lg text-white/80 italic">
-              &ldquo;CloudWeave has transformed how we think about infrastructure.
-              The simplicity and power it provides is unmatched.&rdquo;
-            </blockquote>
-            <div className="mt-4 text-white/60">
-              <div className="font-semibold">Sarah Chen</div>
-              <div className="text-sm">CTO, TechCorp</div>
-            </div>
+            <p className="text-lg text-white/80">
+              Designed by engineers, for engineers. CloudWeave provides the 
+              reliability and performance that professional teams expect.
+            </p>
           </div>
         </motion.div>
       </div>

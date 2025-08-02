@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Play, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Play, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -93,38 +93,15 @@ export default function Hero() {
               </button>
             </motion.div>
 
-            {/* Social proof */}
+            {/* Trust indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-12 flex items-center space-x-8"
+              className="mt-12 flex items-center justify-center lg:justify-start space-x-8"
             >
-              <div className="flex items-center space-x-4">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <motion.div
-                      key={i}
-                      className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 ring-2 ring-white/20"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
-                    />
-                  ))}
-                </div>
-                <div className="text-white/80">
-                  <div className="font-semibold text-white">10,000+</div>
-                  <div className="text-sm">developers worldwide</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-2 text-white/80">
-                <div className="flex space-x-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="h-4 w-4 fill-blue-400 text-blue-400" />
-                  ))}
-                </div>
-                <span className="text-sm font-medium">4.9/5 rating</span>
+              <div className="text-white/80 text-sm">
+                <span className="font-semibold text-white">Trusted by Professional Engineers</span>
               </div>
             </motion.div>
           </div>
