@@ -136,7 +136,7 @@ export default function Navigation() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Link
-                href="https://app.cloudweave.io"
+                href="http://cloudweave-alb-319481151.us-east-1.elb.amazonaws.com/"
                 className="group relative overflow-hidden btn-primary"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
